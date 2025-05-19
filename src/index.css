@@ -1,0 +1,176 @@
+/* index.css */
+
+/* Globaalne lähtestus */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #fff;
+  color: #000;
+  overflow-x: hidden; /* EI lase kogu lehel horisontaalselt kerida */
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+/* Üldised nupud */
+.btn {
+  font-size: 0.9rem;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 0.375rem;
+  background-color: #007bff;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+}
+.btn:hover:not(:disabled) {
+  background-color: #0056b3;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+.btn:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.btn:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.mt-1 {
+  margin-top: 1rem;
+}
+
+/* Tunniklotside baasstiil (nüüd kitsam ja pisema tekstiga) */
+.timeBlock {
+  position: absolute;
+  width: 150px;               /* varem 200px */
+  padding: 0.4rem;            /* varem 0.5rem */
+  box-sizing: border-box;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  border-left: 4px solid var(--tb-accent, #007bff);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  font-size: 0.8rem;          /* varem 0.9rem */
+  transition: transform 0.2s, box-shadow 0.2s;
+  overflow-y: auto;           /* sisemine üles‑alla kerimine */
+  max-height: 100%;           /* et kerimine toimiks korrektselt */
+}
+.timeBlock:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.timeBlock .tb-header {
+  font-weight: bold;
+  margin-bottom: 0.2rem;
+  color: #333;
+}
+.timeBlock .tb-title {
+  margin-bottom: 0.2rem;
+  color: #222;
+}
+.timeBlock .tb-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.4rem;
+  font-size: 0.7rem;
+  color: #555;
+}
+.timeBlock .tb-meta span {
+  position: relative;
+  padding-left: 0.6rem;
+}
+.timeBlock .tb-meta span::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0.1em;
+  font-size: 0.6rem;
+  color: #999;
+}
+
+/* Päevanupud */
+.day-button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.day-button {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
+  border: none;
+  border-radius: 0.25rem;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+}
+.day-button:hover {
+  background-color: #f0f0f0;
+}
+.day-button.active {
+  background-color: #007bff;
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Graafiku wrapper – näitab omaenda H‑scroll riba, leht ise ei veni */
+.timetable-container {
+  position: relative;
+
+  width: 100%;
+  max-width: 100vw;   /* ei lase graafikul lehe laiust kasvatada */
+
+  overflow-x: visible;   /* horisontaalne kerimine wrapper’is */
+  overflow-y: hidden;/* vertikaalset kerimist teeb kogu page */
+
+  /* ⬇️ Scroll‑ribasid enam ei peideta! */
+}
+
+/* index.css */
+
+/* Spinneri overlay kogu ekraanile */
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* Lihtne CSS‑spinner */
+.loader-overlay .spinner {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #007bff;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Horisontaalne kerimine AINULT graafiku sisule */
+.grid-scroll {
+  position: relative;
+  width: 100%;
+  max-width: 100vw;   /* ei lase lehel laiemaks minna */
+  overflow-x: auto;   /* ⬅️ nähtav X‑scroll */
+  overflow-y: hidden; /* ⬅️ Y‑kerimist pole */
+}
+
