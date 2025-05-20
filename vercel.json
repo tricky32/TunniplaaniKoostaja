@@ -1,0 +1,13 @@
+{
+    "rewrites": [
+      {
+        "source": "/getProgram",
+        "destination": "https://tunniplaan.taltech.ee/tt/api/public/timetables"
+      },
+      {
+        "source": "/api/:path*",         
+        "destination": "https://tunniplaan.taltech.ee/tt/api/public/:path*"
+      }
+    ]
+  }
+  
